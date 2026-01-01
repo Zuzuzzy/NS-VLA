@@ -1,0 +1,62 @@
+# Stage II: online RL. High-level GRPO on the pointer, low-level AWR on the action
+# solver, both anchored to the Stage-I BC policy by a KL term (Eq. 9, Alg. 1).
+#
+# Requires a trainable solver already listening; see scripts/solver_server.py.
+exp_name: rl_spatial
+seed: 0
+
+control:
+  chunk_H: 8
+  action_dim: 7
+
+solver:
+  name: remote          # the reference solver runs in its own process
+  host: 127.0.0.1
+  port: 5678
+  request_timeout_ms: 60000
+
+env:
+  benchmark: LIBERO
+  suites: [libero_spatial]
+  tasks_per_suite: 10
+
+rl:
+  lr: 3.0e-5            # phi, the pointer head
+  low_lr: 1.0e-5        # theta, the solver's adapters and action head
+  warmup_steps: 5       # counted in ITERATIONS: one optimizer step per iteration
+  schedule: cosine
+  group_size: 8         # G rollouts per group
+  beta_kl: 0.05
+  kl_band: [1.0e-3, 5.0e-2]
+  kl_controller: true
+  beta_l: 1.0           # AWR chunk temperature
+  lambda_l: 1.0
+  adv_clip: 5.0
+  awr_max_chunks: 64
+  max_iters: 50
+  early_stop_patience: 10
+  task_order: cycle     # task-matched windows, so a per-task effect is not read as a trend
+  eval_every: 5
+  eval_episodes: 10
+  ckpt_every: 5
+  reward:
+    gamma: 0.99
+    lambda_seg: 1.0     # milestone
+    lambda_prog: 1.0    # progress
+    lambda_sub: 0.5
+    lambda_sm: 0.1      # auxiliary
+    lambda_gr: 0.1
+    normalize_running_std: true
+    grasp_criterion: recal
+  prototype:
+    buffer_cap: 64
+    n_clusters: 3
+    refresh_every: 5
+    stop_grad: true
+  rollout:
+    n_workers: 4
+    sigma: 0.05         # exploration noise, in normalized action space
+    sigma_eval: 0.0
+    high_sample: false  # Alg.1 line 13 is argmax; sampling is an ablation
+    worker_threads: 4
+    worker_nice: 10

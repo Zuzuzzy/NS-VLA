@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+
+# Large artifacts: datasets, weights, cached features and run outputs.
+# Redirect these roots with the NSVLA_* environment variables (nsvla/utils/paths.py).
+data/features/
+data/primitive_annotations/
+data/manifests/
+checkpoints/
+runs/
+third_party/
+*.hdf5
+*.npz
+*.pt
+*.ckpt

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nsvla"
+version = "0.1.0"
+description = "NS-VLA: Towards Neuro-Symbolic Vision-Language-Action Models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "numpy>=2.2",
+    "torch>=2.8",
+    "torchvision>=0.23",
+    "pyyaml>=6.0",
+    "pyzmq>=27.0",
+    "json-numpy>=2.1",
+    "h5py>=3.16",
+    "transformers>=5.14",
+    "pillow>=12.0",
+    "matplotlib>=3.10",
+]
+
+[tool.setuptools]
+packages = [
+    "nsvla",
+    "nsvla.primitives",
+    "nsvla.encoder",
+    "nsvla.solver",
+    "nsvla.rl",
+    "nsvla.envs",
+    "nsvla.eval",
+    "nsvla.train",
+    "nsvla.utils",
+]

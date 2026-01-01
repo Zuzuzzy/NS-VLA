@@ -1,0 +1,28 @@
+# Stage I: supervised pretraining of the monotone-pointer classifier, and the
+# 1-shot behaviour-cloning warm-start that becomes the Stage-II KL anchor.
+#
+# Paths are omitted on purpose: every root defaults to a directory inside the repo
+# and is redirected with an environment variable (see nsvla/utils/paths.py).
+exp_name: pointer
+seed: 0
+
+control:
+  chunk_H: 8            # must equal the action solver's own chunk length
+  action_dim: 7
+  image_size: 224
+  proprio_dim: 8
+
+plan:
+  max_len: 6            # Mmax; the longest expanded LIBERO plan is 4 primitives
+  use_vlm_fallback: true
+
+classifier:
+  d_in: 2048            # mean-pooled feature width of the frozen encoder
+  hidden_mult: 2.0
+  seg_window: 3         # segment-end label window w, swept over {2, 3, 4}
+  class_weight_inverse_freq: true
+
+env:
+  benchmark: LIBERO
+  suites: [libero_spatial, libero_object, libero_goal, libero_10]
+  tasks_per_suite: 10

@@ -1,0 +1,28 @@
+# Out-of-distribution evaluation: LIBERO-Plus. A perturbation is part of the task
+# identity, not a runtime knob, so the axis and level are selected by task id and
+# recorded in each trace.
+exp_name: eval_libero_plus
+seed: 0
+
+control:
+  chunk_H: 8
+  action_dim: 7
+  image_size: 224
+
+plan:
+  max_len: 6
+
+solver:
+  name: remote
+  host: 127.0.0.1
+  port: 5678
+
+env:
+  benchmark: LIBERO-Plus
+  suites: [libero_spatial, libero_object, libero_goal, libero_10]
+  tasks_per_suite: 10
+
+eval:
+  policy: nsvla
+  episodes_per_task: 50
+  seeds: [0, 1, 2]
