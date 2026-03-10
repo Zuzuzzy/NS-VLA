@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS-VLA Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fafaf8;
+            color: #1a1a1a;
+            text-align: center;
+            padding: 40px 24px;
+        }
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .logo span { color: #2563eb; }
+        .subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 48px;
+        }
+        .card {
+            background: #fff;
+            border: 1.5px solid #e5e5e5;
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 520px;
+            width: 100%;
+        }
+        .icon-wrap {
+            width: 72px; height: 72px;
+            background: #f0f4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.85; }
+        }
+        .icon-wrap svg { width: 32px; height: 32px; stroke: #2563eb; fill: none; stroke-width: 2; }
+        .card h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #666;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: opacity 0.15s;
+        }
+        .back-link:hover { opacity: 0.7; }
+        .footer {
+            margin-top: 48px;
+            font-size: 0.82rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo"><span>NS-VLA</span> Demo</div>
+    <p class="subtitle">Neuro-Symbolic Vision-Language-Action Models</p>
+
+    <div class="card">
+        <div class="icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+        </div>
+        <h2>Interactive Demo Coming Soon</h2>
+        <p>
+            We are actively developing an interactive demonstration of the NS-VLA framework. The demo will showcase real-time neuro-symbolic primitive inference and robotic manipulation in simulated environments.
+        </p>
+        <p style="color:#999; font-size:0.88rem;">
+            Stay tuned for updates. In the meantime, please refer to our paper and code repository.
+        </p>
+        <a class="back-link" href="../">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Project Page
+        </a>
+    </div>
+
+    <div class="footer">NS-VLA &copy; 2026</div>
+</body>
+</html>
