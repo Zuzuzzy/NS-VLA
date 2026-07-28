@@ -1,0 +1,21 @@
+# Encoder / RL side. Version floors are the versions the released results were
+# produced with. Everything here is either imported by code in this repository or
+# required at run time by something that is; the latter are marked.
+numpy>=2.2
+torch>=2.8
+torchvision>=0.23      # required at run time by the transformers VLM processor.
+                       # Install it in the SAME pip invocation as torch: resolving it
+                       # afterwards will upgrade torch to whatever version it prefers.
+pyyaml>=6.0
+pyzmq>=27.0
+json-numpy>=2.1        # numpy-aware JSON codec for the solver wire protocol
+h5py>=3.16             # reading demonstration files
+transformers>=5.14     # frozen VLM context encoder
+pillow>=12.0
+matplotlib>=3.10       # annotation audit images (data/annotate_demos.py --review-dir)
+
+# Not installable from PyPI, install from source:
+#   LIBERO        https://github.com/Lifelong-Robot-Learning/LIBERO
+#   LIBERO-Plus   the out-of-distribution evaluation suite
+# The action solver runs in its own environment and brings its own dependencies;
+# see nsvla/solver/vla_adapter.py.
